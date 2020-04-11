@@ -1,0 +1,19 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: agmalpartida
+  description: Handle cron.
+  company: ""
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.1
+  platforms:
+  - name: RedHat
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  galaxy_tags:
+    - system
+    - cron

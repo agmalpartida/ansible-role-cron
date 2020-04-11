@@ -1,0 +1,19 @@
+---
+make_config_enabled: true
+
+cron: 
+    jobs1:
+        name:      "cron example 1"
+        job:       "/root/bin/example.sh"
+        minute:    30
+        hour:      00
+        day:       "*"
+        month:     "*"
+        weekday:   "*"
+        user:      "root"
+        state:     "present"
+    jobs2:
+        name: "cron example 2"
+        job:    "/root/bin/example2.sh"
+        minute: 30
+        hour:   23
