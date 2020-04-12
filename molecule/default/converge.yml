@@ -12,7 +12,7 @@
       when: ansible_os_family == 'Debian'
       changed_when: false
       apt:
-        name: "cronie"
+        name: "cron"
         state: "present"
     - name: Ensure Crontab is installed.
       when: ansible_os_family == 'RedHat'
