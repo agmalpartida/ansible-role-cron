@@ -1,4 +1,4 @@
-# Ansible Role: Java
+# Ansible Role: Cron
 
 [![Build Status](https://api.travis-ci.com/agmalpartida/ansible-role-cron.svg?branch=master)](https://travis-ci.com/github/agmalpartida/ansible-role-cron)
 
