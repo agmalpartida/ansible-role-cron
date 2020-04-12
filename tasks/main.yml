@@ -1,2 +1,13 @@
 ---
-- { import_tasks: make_config.yml,        tags: "make_config",         when: make_config_enabled|default(false)|bool }
+- name: entries will be squeduled
+  cron:
+    name: "{{ item.value.name }}"
+    job: "{{ item.value.job }}"
+    minute: "{{ item.value.minute|default(omit) }}"
+    hour: "{{ item.value.hour|default(omit) }}"
+    day: "{{ item.value.day|default(omit) }}"
+    month: "{{ item.value.month|default(omit) }}"
+    weekday: "{{ item.value.weekday|default(omit) }}"
+    user: "{{ item.value.user|default('root') }}"
+    state: "{{ item.value.state|default('present') }}"
+  with_dict: "{{ cron }}"

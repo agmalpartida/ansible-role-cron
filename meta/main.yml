@@ -8,12 +8,12 @@ galaxy_info:
   license: "license (BSD, MIT)"
   min_ansible_version: 2.1
   platforms:
-  - name: RedHat
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - all
+    - name: RedHat
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
   galaxy_tags:
     - system
     - cron

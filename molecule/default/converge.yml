@@ -8,6 +8,18 @@
       apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
       changed_when: false
+    - name: Ensure Crontab is installed.
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+      apt:
+        name: "cronie"
+        state: "present"
+    - name: Ensure Crontab is installed.
+      when: ansible_os_family == 'RedHat'
+      changed_when: false
+      yum:
+        name: "cronie"
+        state: "present"
 
   roles:
     - role: ansible-role-cron
