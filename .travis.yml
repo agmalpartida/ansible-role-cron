@@ -1,33 +1,22 @@
----
-language: python
-services: docker
+sudo: required
 
-env:
-  global:
-    - ROLE_NAME: java
-  matrix:
-    - MOLECULE_DISTRO: centos8
-    - MOLECULE_DISTRO: centos7
-    - MOLECULE_DISTRO: centos6
-    - MOLECULE_DISTRO: fedora31
-    - MOLECULE_DISTRO: ubuntu1804
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: debian10
-    - MOLECULE_DISTRO: debian9
+services:
+  - docker
 
-install:
-  # Install test dependencies.
-  - pip install molecule yamllint ansible-lint docker
-
-before_script:
-  # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv ansible-role-$ROLE_NAME agmalpartida.$ROLE_NAME
-  - cd agmalpartida.$ROLE_NAME
+before_install:
+  # Fetch base image and build new container
+  - sudo docker pull centos:7
+  - sudo docker build --rm=true --tag=travispoc .
 
 script:
-  # Run tests.
-  - molecule test
+  # Run container in detached state
+  - sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/role_under_test:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro travispoc /usr/lib/systemd/systemd > /tmp/container_id
+  # Check syntax of ansible playbook
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/role_under_test/test.yml --syntax-check
+  # Run ansible playbook
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/role_under_test/test.yml
+  # Clean up
+  - sudo docker stop "$(cat /tmp/container_id)"
 
 notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false
