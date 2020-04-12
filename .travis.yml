@@ -10,11 +10,11 @@ before_install:
 
 script:
   # Run container in detached state
-  - sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/role_under_test:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro travispoc /usr/lib/systemd/systemd > /tmp/container_id
+  - sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/ansible-role-cron:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro travispoc /usr/lib/systemd/systemd > /tmp/container_id
   # Check syntax of ansible playbook
-  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/role_under_test/test.yml --syntax-check
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/ansible-role-cron/test.yml --syntax-check
   # Run ansible playbook
-  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/role_under_test/test.yml
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/ansible-role-cron/test.yml
   # Clean up
   - sudo docker stop "$(cat /tmp/container_id)"
 
