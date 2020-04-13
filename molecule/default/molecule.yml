@@ -9,7 +9,7 @@ lint: |
   ansible-lint
 platforms:
   - name: instance
-    image: "agmalpartida/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+    image: "agmalpartida/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
