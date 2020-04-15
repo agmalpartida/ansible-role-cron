@@ -21,9 +21,9 @@ install:
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv $ROLE_NAME agmalpartida.$ROLE_NAME
-  - cd agmalpartida.$ROLE_NAME
+  #- cd ../
+  #- mv $ROLE_NAME agmalpartida.$ROLE_NAME
+  #- cd agmalpartida.$ROLE_NAME
 
 script:
   # Run tests.
