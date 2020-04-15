@@ -1,6 +1,6 @@
 # Ansible Role: Cron
 
-[![Build Status](https://api.travis-ci.com/agmalpartida/ansible-role-cron.svg?branch=master)](https://travis-ci.com/github/agmalpartida/ansible-role-cron)
+[![Build Status](https://api.travis-ci.com/agmalpartida/ssh-keys-add.svg?branch=master)](https://travis-ci.com/github/agmalpartida/ssh-keys-add)
 
 This role will deal with the setup of __Cron__.
 
